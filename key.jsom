@@ -1,0 +1,12 @@
+{
+  "keys": {
+    "VIPKEY123": {
+      "expire": "2025-12-31",
+      "fingerprint": "google/sdk_gphone_x86/generic_x86:11/RQ3A.210705.001/7321933:user/release-keys"
+    },
+    "RAHASIA999": {
+      "expire": "2024-06-30",
+      "fingerprint": "google/sdk_gphone_x86/generic_x86:11/RQ3A.210705.001/7321933:user/release-keys"
+    }
+  }
+}
