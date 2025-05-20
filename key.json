@@ -3,6 +3,10 @@
     "RAHASIA999": {
       "expire": "2024-06-30",
       "fingerprint": "google/sdk_gphone_x86/generic_x86:11/RQ3A.210705.001/7321933:user/release-keys"
+    },
+    "ADMIN": {
+      "expire": "2025-05-21",
+      "fingerprint": "vivo/V2205T/V2205:14/UP1A.231005.007/compiler04101758:user/release-keys"
     }
   }
 }
