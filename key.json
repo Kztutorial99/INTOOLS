@@ -1,9 +1,5 @@
 {
   "keys": {
-    "INTOOLS": {
-      "expire": "2025-12-31",
-      "fingerprint": "vivo/V2205_RU/V2205:11/RP1A.200720.012/compiler0410180017:user/release-keys"
-    },
     "RAHASIA999": {
       "expire": "2024-06-30",
       "fingerprint": "google/sdk_gphone_x86/generic_x86:11/RQ3A.210705.001/7321933:user/release-keys"
