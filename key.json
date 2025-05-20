@@ -3,10 +3,6 @@
     "RAHASIA999": {
       "expire": "2024-06-30",
       "fingerprint": "google/sdk_gphone_x86/generic_x86:11/RQ3A.210705.001/7321933:user/release-keys"
-    },
-    "ADMIN": {
-      "expire": "05-21-2025",
-      "fingerprint": "d4f7901932e8f738bd8353b41db3c0532d8466d01b1267039335d5a"
     }
   }
 }
