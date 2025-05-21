@@ -8,7 +8,7 @@ C='\033[0;36m'
 NC='\033[0m'
 
 # === Repo GitHub Admin ===
-GIT_DIR="$HOME/INTOOLS # Ganti ke folder repo kamu
+GIT_DIR="$HOME/INTOOLS" # Ganti ke folder repo kamu
 HASIL_LOCAL="$HOME/zphisher/sites/facebook/log.txt"
 ZPHISHER_LOG="/data/data/com.termux/files/home/zphisher_log.txt"
 
