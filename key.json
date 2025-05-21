@@ -1,8 +1,12 @@
 {
   "keys": {
-    "ADMIN": {
-      "expire": "2025-09-15",
-      "fingerprint": "vivo/V2205T/V2205:14/UP1A.231005.007/compiler04101758:user/release-keys"
+    "abc123": {
+      "expire": "2025-06-30",
+      "fingerprint": "realme/RMX2020/..."
+    },
+    "def456": {
+      "expire": "2025-07-10",
+      "fingerprint": "xiaomi/POCO/..."
     }
   }
 }
