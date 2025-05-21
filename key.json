@@ -1,6 +1,6 @@
 {
   "keys": {
-    "123": {
+    "ADMIN": {
       "expire": "2025-09-15",
       "fingerprint": "vivo/V2205T/V2205:14/UP1A.231005.007/compiler04101758:user/release-keys"
     }
